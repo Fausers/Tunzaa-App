@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Sliders
+            Add Product
         </h2>
     </x-slot>
 
@@ -15,37 +15,32 @@
                         <div class="md:grid md:grid-cols-3 md:gap-6">
                             <div class="md:col-span-1">
                                 <div class="px-4 sm:px-0">
-                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Slider Details</h3>
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Product
+                                        Details</h3>
                                     <p class="mt-1 text-sm text-gray-600">
-                                        Update the slider Details
+                                        Fill the product Details
                                     </p>
                                 </div>
                             </div>
                             <div class="mt-5 md:mt-0 md:col-span-2">
-                                <form action="{{url('/')}}/sliders/update/{{$slider->id}}" method="POST"
+                                <form action="{{route('store_product')}}" method="POST"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="shadow overflow-hidden sm:rounded-md">
                                         <div class="px-4 py-5 bg-white sm:p-6">
                                             <div class="grid grid-cols-6 gap-6">
                                                 <div class="col-span-6 sm:col-span-3">
-                                                    <label for="first_name" class="block text-sm
-                                                    font-medium text-gray-700">Slider Title</label>
-                                                    <input value="{{$slider->title}}" type="text" name="title" id="title"
-                                                           autocomplete="given-name" class="mt-1
-                                                           focus:ring-indigo-500 focus:border-indigo-500
-                                                           block w-full shadow-sm sm:text-sm border-gray-300
-                                                            rounded-md">
+                                                    <label for="name" class="block text-sm
+                                                    font-medium text-gray-700">Product Name</label>
+                                                    <input type="text" name="name" id="name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="small_title" class="block text-sm
-                                                    font-medium text-gray-700">Sub-Title</label>
-                                                    <input value="{{$slider->small_title}}" type="text" name="small_title" id="small_title"
-                                                           autocomplete="family-name" class="mt-1
-                                                           focus:ring-indigo-500 focus:border-indigo-500
-                                                           block w-full shadow-sm sm:text-sm border-gray-300
-                                                            rounded-md">
+                                                    font-medium text-gray-700">Shop Name</label>
+                                                    <input type="text" disabled value="{{$shop->name}}" autocomplete="family-name"
+                                                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500
+                                                           block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
 
 
@@ -53,49 +48,35 @@
                                                     <label for="desc"
                                                            class="block text-sm font-medium
                                                             text-gray-700">Description</label>
-                                                    <input value="{{$slider->desc}}" type="text" name="desc"
-                                                           id="desc" autocomplete="street-address"
-                                                           class="mt-1 focus:ring-indigo-500
-                                                           focus:border-indigo-500 block w-full shadow-sm
-                                                           sm:text-sm border-gray-300 rounded-md">
+                                                    <textarea type="text" name="desc" id="desc" autocomplete="description" class="mt-1 focus:ring-indigo-500  focus:border-indigo-500 block w-full shadow-sm  sm:text-sm border-gray-300 rounded-md"></textarea>
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-                                                    <label for="button" class="block text-sm font-medium
-                                                    text-gray-700">Button Name</label>
-                                                    <input value="{{$slider->button}}" type="text" name="button" id="button" class="mt-1
-                                                    focus:ring-indigo-500 focus:border-indigo-500 block
-                                                    w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <label for="price" class="block text-sm font-medium
+                                                    text-gray-700">Price</label>
+                                                    <input type="number" name="price" id="price"
+                                                           class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
-
 
                                                 <div class="col-span-6 sm:col-span-3 lg:col-span-3">
-                                                    <label for="button_url" class="block text-sm font-medium
-                                                    text-gray-700">Button URL</label>
-                                                    <input placeholder="www.example.com" value="{{$slider->button_url}}" type="text" name="button_url" id="button_url" class="mt-1
-                                                    focus:ring-indigo-500 focus:border-indigo-500 block
+                                                    <label for="stock" class="block text-sm font-medium
+                                                    text-gray-700">Stock</label>
+                                                    <input type="number" name="stock" id="stock" class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block
                                                     w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
-
-
 
                                             </div>
                                             <div>
                                                 <label class="block text-sm font-medium text-gray-700">
-                                                    Slider Image
+                                                    Product Image
                                                 </label>
-                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                    <img alt="feature" class="object-cover object-center h-full w-full"
-                                                         src="{{url('/')}}/{{$slider->image_url}}">
-                                                </dd>
                                                 <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2
                                                 border-gray-300 border-dashed rounded-md">
                                                     <div class="space-y-1 text-center">
                                                         <svg class="mx-auto h-12 w-12 text-gray-400"
                                                              stroke="currentColor" fill="none" viewBox="0 0 48 48"
                                                              aria-hidden="true">
-                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0
-                                                            01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0
+                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0  01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0
                                                             00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28
                                                             28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2"
                                                                   stroke-linecap="round" stroke-linejoin="round" />
@@ -108,8 +89,7 @@
                                                             focus-within:ring-offset-2
                                                             focus-within:ring-indigo-500">
                                                                 <span>Upload a file</span>
-                                                                <input id="file-upload" name="image"
-                                                                       type="file" class="sr-only">
+                                                                <input id="file-upload" accept="image/*" name="file" type="file" class="sr-only">
                                                             </label>
                                                             <p class="pl-1">or drag and drop</p>
                                                         </div>
@@ -125,7 +105,7 @@
                                             border border-transparent shadow-sm text-sm font-medium rounded-md
                                             text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none
                                             focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Update
+                                                Save
                                             </button>
                                         </div>
                                     </div>

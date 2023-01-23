@@ -1,8 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Sliders
-            <a href="{{url('/')}}/sliders/create" class="ml-4 text-right inline-flex text-white bg-green-700 border-0 py-2 px-6 focus:outline-none hover:bg-green-500 rounded text-lg">Add Slider</a>
+            Products
+            <a href="{{route('create_product')}}"
+               class="ml-4 text-right inline-flex text-white bg-green-700 border-0 py-2 px-6 focus:outline-none hover:bg-green-500 rounded text-lg">Add Product</a>
         </h2>
     </x-slot>
 
@@ -35,30 +36,30 @@
                                     </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach($sliders as $slider)
+                                    @foreach($products as $product)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 h-10 w-10">
                                                     <img class="h-10 w-10 rounded-full"
-                                                         src="{{$slider->image_url}}" alt="">
+                                                         src="/{{$product->image}}" alt="">
                                                 </div>
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{$slider->title}}
+                                                        {{$product->title}}
                                                     </div>
                                                     <div class="text-sm text-gray-500">
-                                                        {{$slider->small_title}}
+                                                        {{$product->small_title}}
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{$slider->desc}}</div>
+                                            <div class="text-sm text-gray-900">{{$product->desc}}</div>
 
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            @if(!isset($slider->deleted_at))
+                                            @if(!isset($product->deleted_at))
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold
                                             rounded-full bg-green-100 text-green-800">
                                                 Active
@@ -71,24 +72,24 @@
                                             @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{$slider->button}}
+                                            {{$product->button}}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            @if(!isset($slider->deleted_at))
-                                                <a href="{{url('/')}}/sliders/show/{{$slider->id}}" class="ml-4
+                                            @if(!isset($product->deleted_at))
+                                                <a href="{{route('show_product',$product->id)}}" class="ml-4
                                                 text-right inline-flex text-white bg-yellow-700 py-2
                                                 px-2 hover:bg-yellow-500 rounded
                                                 text-xs">View</a>
-                                                <a href="{{url('/')}}/sliders/edit/{{$slider->id}}" class="ml-4
+                                                <a href="{{route('edit_product',$product->id)}}" class="ml-4
                                                 text-right inline-flex text-white bg-purple-700 py-2
                                                 px-2 hover:bg-purple-500 rounded
                                                 text-xs">Edit</a>
-                                                <a href="{{url('/')}}/sliders/delete/{{$slider->id}}" class="ml-4
+                                                <a href="{{route('destroy_product',$product->id)}}" class="ml-4
                                                 text-right inline-flex text-white bg-red-700 border-0 py-2 px-2
                                                 focus:outline-none hover:bg-red-500 rounded
                                                 text-xs">Deactivate</a>
                                             @else
-                                                <a href="{{url('/')}}/sliders/activate/{{$slider->id}}" class="ml-4
+                                                <a href="{{url('/')}}/sliders/activate/{{$product->id}}" class="ml-4
                                                 text-right inline-flex text-white bg-green-700 border-0 py-2 px-2
                                                  focus:outline-none hover:bg-green-500 rounded
                                                  text-xs">Activate</a>

@@ -4,6 +4,9 @@ use App\Http\Controllers\FrontContrntController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TariffController;
 use App\Http\Controllers\TermController;
+use App\Http\Controllers\Tunzaa\OrderController;
+use App\Http\Controllers\Tunzaa\ProductController;
+use App\Http\Controllers\Tunzaa\ShopController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
@@ -21,97 +24,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 
-
-
-
-
-
 Route::group(['namespace' => 'App\Http\Controllers\CBS','middleware' => ['auth']], function () {
 
-    Route::prefix('sliders')->group(function(){
-        Route::get('/', [SliderController::class, 'index'])->name('sliders');
-        Route::post('store', [SliderController::class, 'store']);
-        Route::get('show/{id}', [SliderController::class, 'show']);
-        Route::get('create', [SliderController::class, 'create']);
-        Route::get('edit/{id}', [SliderController::class, 'edit']);
-        Route::post('update/{id}', [SliderController::class, 'update']);
-        Route::get('delete/{id}', [SliderController::class, 'destroy']);
-        Route::get('activate/{id}', [SliderController::class, 'activate']);
+    Route::prefix('order')->group(function(){
+        Route::get('create/{id}', [OrderController::class, 'create'])->name('create_order');
+        Route::post('store/{id}', [OrderController::class, 'store'])->name('store_order');
+        Route::get('mine', [OrderController::class, 'myOrders'])->name('my_orders');
     });
 
-    Route::prefix('front')->group(function(){
-        Route::get('/', [FrontContrntController::class, 'index'])->name('front');
-        Route::post('store', [FrontContrntController::class, 'store']);
-        Route::get('show/{id}', [FrontContrntController::class, 'show']);
-        Route::get('edit', [FrontContrntController::class, 'edit']);
-        Route::post('update', [FrontContrntController::class, 'update']);
-        Route::get('delete/{id}', [FrontContrntController::class, 'destroy']);
-        Route::get('activate/{id}', [FrontContrntController::class, 'activate']);
+    Route::prefix('app/products')->group(function(){
+        Route::get('/', [ProductController::class, 'index'])->name('shop_products');
+        Route::get('create', [ProductController::class, 'create'])->name('create_product');
+        Route::post('store', [ProductController::class, 'store'])->name('store_product');
+        Route::get('show/{id}', [ProductController::class, 'show'])->name('show_product');
+        Route::get('edit/{id}', [ProductController::class, 'edit'])->name('edit_product');
+        Route::post('update/{id}', [ProductController::class, 'update'])->name('update_product');
+        Route::get('delete/{id}', [ProductController::class, 'destroy'])->name('destroy_product');
+        Route::get('activate/{id}', [ProductController::class, 'activate'])->name('activate_product');
     });
-
-    Route::prefix('tariffs')->group(function(){
-        Route::get('/', [TariffController::class, 'index'])->name('tariffs');
-        Route::get('/create', [TariffController::class, 'create'])->name('create_tariff');
-        Route::post('store', [TariffController::class, 'storeImage']);
-        Route::get('edit/{id}', [TariffController::class, 'edit']);
-        Route::post('update/{id}', [TariffController::class, 'update']);
-        Route::get('delete/{id}', [TariffController::class, 'destroy']);
-        Route::get('activate/{id}', [TariffController::class, 'activate']);
-    });
-
-    Route::prefix('term')->group(function(){
-        Route::get('/', [TermController::class, 'index'])->name('term');
-        Route::get('/create', [TermController::class, 'create'])->name('create_term');
-        Route::post('update}', [TermController::class, 'update'])->name("update_terms_data");
-
-        Route::post('store', [TermController::class, 'store']);
-        Route::get('edit/{id}', [TermController::class, 'edit']);
-        Route::get('delete/{id}', [TermController::class, 'destroy']);
-        Route::get('activate/{id}', [TermController::class, 'activate']);
-    });
-
-    Route::prefix('crm')->group(function(){
-        Route::get('my_about', [CRMController::class, 'about'])->name('my_about');
-        Route::post('update_my_about', [CRMController::class, 'updateAbout'])->name('update_my_about');
-
-        Route::post('update', [CRMController::class, 'update'])->name("update_terms");
-
-        Route::post('store', [CRMController::class, 'store']);
-        Route::get('edit/{id}', [CRMController::class, 'edit']);
-        Route::get('delete/{id}', [CRMController::class, 'destroy']);
-        Route::get('activate/{id}', [CRMController::class, 'activate']);
-
-        Route::get('others', [CRMController::class, 'others'])->name('others');
-        Route::post('update_others', [CRMController::class, 'updateOthers'])->name('update_others');
-    });
-
-
-
 
 });
 
 Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', [WelcomeController::class, 'welcome']);
-    Route::get('/index', [WelcomeController::class, 'index']);
-    Route::get('/our_tariffs', [TariffController::class, 'tariffs']);
-    Route::get('/terms', [TermController::class, 'terms'])->name('terms');
 
-    Route::prefix('contact')->group(function(){
-        Route::get('/', [ContactController::class, 'index'])->name('contact');
+    Route::prefix('shop')->group(function(){
+        Route::get('/', [ShopController::class, 'shop'])->name('shop');
+        Route::get('/product/{id}', [ShopController::class, 'product'])->name('product');
     });
 
-    Route::prefix('about')->group(function(){
-        Route::get('/', [AboutController::class, 'index'])->name('about');
-    });
 
 });
 

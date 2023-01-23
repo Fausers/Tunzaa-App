@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Create Slider
+            Edit {{$product->name}}
         </h2>
     </x-slot>
 
@@ -15,15 +15,14 @@
                         <div class="md:grid md:grid-cols-3 md:gap-6">
                             <div class="md:col-span-1">
                                 <div class="px-4 sm:px-0">
-                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Slider
-                                        Details</h3>
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Product Details</h3>
                                     <p class="mt-1 text-sm text-gray-600">
-                                        Fill the slider Details
+                                        Update the product Details
                                     </p>
                                 </div>
                             </div>
                             <div class="mt-5 md:mt-0 md:col-span-2">
-                                <form action="{{url('/')}}/sliders/store" method="POST"
+                                <form action="{{route('update_product',$product->id)}}" method="POST"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="shadow overflow-hidden sm:rounded-md">
@@ -31,8 +30,8 @@
                                             <div class="grid grid-cols-6 gap-6">
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="first_name" class="block text-sm
-                                                    font-medium text-gray-700">Slider Title. Separate Colour with coma (,)</label>
-                                                    <input type="text" name="title" id="title"
+                                                    font-medium text-gray-700">Product Name</label>
+                                                    <input value="{{$product->name}}" type="text" name="name" id="name"
                                                            autocomplete="given-name" class="mt-1
                                                            focus:ring-indigo-500 focus:border-indigo-500
                                                            block w-full shadow-sm sm:text-sm border-gray-300
@@ -41,12 +40,10 @@
 
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="small_title" class="block text-sm
-                                                    font-medium text-gray-700">Sub-Title</label>
-                                                    <input type="text" name="small_title" id="small_title"
-                                                           autocomplete="family-name" class="mt-1
-                                                           focus:ring-indigo-500 focus:border-indigo-500
-                                                           block w-full shadow-sm sm:text-sm border-gray-300
-                                                            rounded-md">
+                                                    font-medium text-gray-700">Shop Name</label>
+                                                    <input type="text" disabled value="{{$shop->name}}" autocomplete="family-name"
+                                                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500
+                                                           block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
 
 
@@ -54,26 +51,20 @@
                                                     <label for="desc"
                                                            class="block text-sm font-medium
                                                             text-gray-700">Description</label>
-                                                    <input type="text" name="desc"
-                                                           id="desc" autocomplete="street-address"
-                                                           class="mt-1 focus:ring-indigo-500
-                                                           focus:border-indigo-500 block w-full shadow-sm
-                                                           sm:text-sm border-gray-300 rounded-md">
+                                                    <textarea type="text" name="desc" id="desc" autocomplete="description" class="mt-1 focus:ring-indigo-500  focus:border-indigo-500 block w-full shadow-sm  sm:text-sm border-gray-300 rounded-md">{{$product->desc}}</textarea>
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-                                                    <label for="button" class="block text-sm font-medium
-                                                    text-gray-700">Button Name</label>
-                                                    <input type="text" name="button" id="button" class="mt-1
-                                                    focus:ring-indigo-500 focus:border-indigo-500 block
-                                                    w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <label for="price" class="block text-sm font-medium
+                                                    text-gray-700">Price</label>
+                                                    <input type="number" name="price" id="price" value="{{$product->price}}"
+                                                           class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-3 lg:col-span-3">
-                                                    <label for="button_url" class="block text-sm font-medium
-                                                    text-gray-700">Button URL</label>
-                                                    <input type="text" name="button_url" id="button_url" class="mt-1
-                                                    focus:ring-indigo-500 focus:border-indigo-500 block
+                                                    <label for="stock" class="block text-sm font-medium
+                                                    text-gray-700">Stock</label>
+                                                    <input type="number" name="stock" id="stock" value="{{$product->stock}}" class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block
                                                     w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
 
@@ -82,8 +73,12 @@
                                             </div>
                                             <div>
                                                 <label class="block text-sm font-medium text-gray-700">
-                                                    Slider Image
+                                                    Product Image
                                                 </label>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                    <img alt="feature" class="object-cover object-center h-full w-full"
+                                                         src="/{{$product->image}}">
+                                                </dd>
                                                 <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2
                                                 border-gray-300 border-dashed rounded-md">
                                                     <div class="space-y-1 text-center">
@@ -104,7 +99,7 @@
                                                             focus-within:ring-offset-2
                                                             focus-within:ring-indigo-500">
                                                                 <span>Upload a file</span>
-                                                                <input id="file-upload" name="image"
+                                                                <input id="file-upload" name="image" accept="image/*"
                                                                        type="file" class="sr-only">
                                                             </label>
                                                             <p class="pl-1">or drag and drop</p>
@@ -121,7 +116,7 @@
                                             border border-transparent shadow-sm text-sm font-medium rounded-md
                                             text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none
                                             focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Save
+                                                Update
                                             </button>
                                         </div>
                                     </div>

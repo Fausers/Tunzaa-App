@@ -1,46 +1,6 @@
 @extends('layouts.azam')
 
 @section('content')
-
-    <!-- Promo Block -->
-    <section style="height: 700px" class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall " data-options='{direction: "reverse", settings_mode_oneelement_max_offset: "150"}'>
-        @foreach($sliders as $slider)
-      <div class="divimage dzsparallaxer--target w-100 g-bg-pos-top-right " style="height: 120%;
-      background-image: url({{$slider->image_url}});"></div>
-
-      <div class="container g-py-100 ">
-        <div class="row">
-
-          <div class="col-md-10">
-              <img style="width: 250px" src="/assets/images/USSD-code-.png">
-              <h2 style="color: white; font-size: 70px;
-              color: #ffcb08; letter-spacing: -7px;">
-                  @php $title = explode(',',$slider->title) @endphp
-                  {{$title[0]}}
-                  @if(isset($title[1]))
-                      <span class="blue">  {{$title[1]}}
-                      </span>
-                  @endif
-              </h2>
-              <h4 style="font-family: Montserrat;
-                            margin-top: -20px;
-                            font-size: 35px;" class="text-white">
-                      <b>{{$slider->small_title}}</b>
-              </h4>
-              <br>
-              <p style="font-family: Montserrat; font-size: 20px" class="text-white">
-                   {!! $slider->desc !!}
-              </p>
-
-          </div>
-        </div>
-      </div>
-            @endforeach
-    </section>
-    <!-- End Promo Block -->
-
-
-
     <!-- Icon Blocks -->
     <section id="offers-section" class="g-bg-secondary">
       <div class="container">

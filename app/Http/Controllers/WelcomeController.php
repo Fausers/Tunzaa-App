@@ -12,7 +12,7 @@ class WelcomeController extends Controller
     {
         $front = FrontContent::first();
         $sliders = Slider::get();
-        return view('index',compact('front','sliders'));
+        return view('welcome',compact('front','sliders'));
     }
 
     public function index()

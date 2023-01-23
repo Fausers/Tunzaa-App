@@ -9,7 +9,6 @@ $other = App\Models\Azam\Other::first();
 
           <nav class="js-mega-menu navbar navbar-expand-lg">
 
-
             <div class="container">
 
                 <!-- Logo -->
@@ -29,17 +28,31 @@ $other = App\Models\Azam\Other::first();
                           </a>
                       </li>
 
-                      <li class="nav-item g-mx-2--md g-mx-5--xl g-mb-5 g-mb-0--lg {{ Request::is('contact') ? 'active' : null }}">
-                          <a href="{{url('/login')}}" class="nav-link" style="color:{{ Request::is('contact') ? '#00a6bc' : 'white' }} ">
-                            Login <i class="icon-user"></i>
-                          </a>
-                      </li>
+                      @if(!isset(Auth::user()->id))
+                          <li class="nav-item g-mx-2--md g-mx-5--xl g-mb-5 g-mb-0--lg">
+                              <a href="{{url('/login')}}" class="nav-link" style="color:{{ Request::is('contact') ? '#00a6bc' : 'white' }} ">
+                                  Login <i class="icon-user"></i>
+                              </a>
+                          </li>
 
-                      <li class="nav-item g-mx-2--md g-mx-5--xl g-mb-5 g-mb-0--lg {{ Request::is('contact') ? 'active' : null }}">
-                          <a href="{{url('/register')}}" class="nav-link" style="color:{{ Request::is('contact') ? '#00a6bc' : 'white' }} ">
-                            Register <i class="icon-user-female"></i>
-                          </a>
-                      </li>
+                          <li class="nav-item g-mx-2--md g-mx-5--xl g-mb-5 g-mb-0--lg">
+                              <a href="{{url('/register')}}" class="nav-link" style="color:{{ Request::is('contact') ? '#00a6bc' : 'white' }} ">
+                                  Register <i class="icon-user-female"></i>
+                              </a>
+                          </li>
+                      @else
+                          <li class="nav-item g-mx-2--md g-mx-5--xl g-mb-5 g-mb-0--lg">
+                              <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <x-responsive-nav-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Log out') }}
+                                    </x-responsive-nav-link>
+                                </form>
+                          </li>
+                      @endif
+
 
                   </ul>
 

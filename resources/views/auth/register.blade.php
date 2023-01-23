@@ -11,7 +11,6 @@
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
-
             <!-- Name -->
             <div>
                 <x-label for="name" :value="__('Name')" />
@@ -24,6 +23,13 @@
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            </div>
+
+            <!-- Email Address -->
+            <div class="mt-4">
+                <x-label for="shop_name" :value="__('Shop Name')" />
+
+                <x-input id="shop_name" class="block mt-1 w-full" type="text" name="shop_name" :value="old('email')" required />
             </div>
 
             <!-- Password -->

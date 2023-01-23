@@ -22,28 +22,8 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="'/front'" :active="request()->routeIs('front*')">
-                        Front Page
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="'/crm/my_about'" :active="request()->routeIs('crm/my_about*')">
-                        About
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="'/tariffs'" :active="request()->routeIs('tariffs*')">
-                        Tariffs
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="'/term'" :active="request()->routeIs('term*')">
-                        Terms
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="'/crm/others'" :active="request()->routeIs('others*')">
-                        Others
+                    <x-nav-link :href="'/app/products'" :active="request()->routeIs('products*')">
+                        Products
                     </x-nav-link>
                 </div>
             </div>
@@ -98,12 +78,6 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('sliders')" :active="request()->routeIs('sliders')">
                 Sliders
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('front')" :active="request()->routeIs('front')">
-                Front Page
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('tariffs')" :active="request()->routeIs('tariffs')">
-                Tariffs
             </x-responsive-nav-link>
         </div>
 
