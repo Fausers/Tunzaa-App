@@ -13,14 +13,16 @@
 7. From the projects root folder run `php artisan key:generate`
 8. From the projects root folder run `php artisan migrate`
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
 ## Rest API
 
 Bellow is the list of API's
 
-### Premium Partners
+### Technologies
+1. Laravel 8
+2. php 7.4
+3. Tailwind css
+4. Javascript
+5. Mysql 
+6. Github
+7. Postman
