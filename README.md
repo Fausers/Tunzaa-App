@@ -16,7 +16,7 @@
 
 ## Rest API
 
-Bellow is the list of API's
+Bellow is the list of APIs
 
 ### Technologies
 1. Laravel 8
