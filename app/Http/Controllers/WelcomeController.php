@@ -10,15 +10,11 @@ class WelcomeController extends Controller
 {
     public function welcome()
     {
-        $front = FrontContent::first();
-        $sliders = Slider::get();
-        return view('welcome',compact('front','sliders'));
+        return redirect()->route('shop');
     }
 
     public function index()
     {
-        $front = FrontContent::first();
-        $sliders = Slider::get();
-        return view('welcome',compact('front','sliders'));
+        return redirect()->route('shop');
     }
 }

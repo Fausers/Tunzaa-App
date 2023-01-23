@@ -16,11 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="'/sliders'" :active="request()->routeIs('sliders*')">
-                        Sliders
-                    </x-nav-link>
-                </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="'/app/products'" :active="request()->routeIs('products*')">
                         Products
@@ -76,9 +72,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('sliders')" :active="request()->routeIs('sliders')">
-                Sliders
-            </x-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->
